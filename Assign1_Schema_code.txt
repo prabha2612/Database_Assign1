@@ -1,0 +1,38 @@
+User {
+	User_ID varchar2 pk
+	User_Name varchar2
+	user_email varchar2
+	Phone_number int
+	User_password varchar2
+	UserID_createdat timestamp
+}
+
+Tweet {
+	Tweet_ID int pk
+	Tweet_cont varchar2(200)
+	Tweet_time timestamp
+	Comment boolean
+	TweetID_of_Comment int null > Tweet.Tweet_ID
+	User_ID varchar2 > User.User_ID
+}
+
+Retweet {
+	Retweet_ID int pk
+	Retweet_cont varchar2(200)
+	Retweet_time timestamp
+	Original_Tweet_ID int > Tweet.Tweet_ID
+	User_ID varchar2 > User.User_ID
+}
+
+Likes {
+	Like_ID int pk
+	Like_Time timestamp
+	User_ID varchar2 > user.User_ID
+	Tweet_ID int > Tweet.Tweet_ID
+}
+
+FollowIDs {
+	Follower_ID varchar2 pk > User.User_ID
+	Following_ID varchar2 pk > User.User_ID
+	Followtime timestamp 
+}
